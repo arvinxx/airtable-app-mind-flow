@@ -1,0 +1,26 @@
+{
+  "homepage": "https://github.com/arvinxx/airtable-app-template#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arvinxx/airtable-app-template.git"
+  },
+  "dependencies": {
+    "@airtable/blocks": "1.2.0",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^2.15.0",
+    "eslint": "^6.3.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "typescript": "^3.9.3",
+    "prettier": "^2.1.0"
+  },
+  "scripts": {
+    "start": "block run",
+    "release": "block release",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
+  }
+}
