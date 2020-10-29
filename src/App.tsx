@@ -1,15 +1,38 @@
-import React, { FC } from 'react';
-import { useShowSettings } from './models';
-import { Settings } from './components';
+import React, { FC, useEffect, useRef } from 'react';
+import { Box } from '@airtable/blocks/ui';
+import { Settings, FlowGraph } from './components';
+import { useSettings, useShowSettings } from './models';
+import { loadCSS } from './globalStyle';
+
+loadCSS();
 
 const App: FC = () => {
-  const { isShowSettings } = useShowSettings();
+  const { isShowSettings, setShowSettings } = useShowSettings();
+  const settings = useSettings();
+  const graph = useRef(null);
+
+  useEffect(() => {
+    if (!settings.isValid) {
+      setShowSettings(true);
+    }
+  }, [setShowSettings, settings.isValid]);
 
   return (
-    <div>
-      <div>hello world!</div>
-      {isShowSettings && <Settings />}
-    </div>
+    <Box
+      position="absolute"
+      top={0}
+      left={0}
+      right={0}
+      bottom={0}
+      display="flex"
+      backgroundColor="#f5f5f5"
+      overflow="hidden"
+    >
+      <FlowGraph graph={graph} />
+      {isShowSettings && (
+        <Settings graph={graph} settingsValidationResult={settings} />
+      )}
+    </Box>
   );
 };
 
