@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useRef } from 'react';
-import { Box } from '@airtable/blocks/ui';
+import { Box, colors } from '@airtable/blocks/ui';
 import { Settings, MindFlow } from './components';
 import { useStore, useShowSettings } from './models';
 import { loadCSS } from './globalStyle';
@@ -23,7 +23,6 @@ const App: FC = () => {
 
   return (
     <Box
-      ref={canvas}
       position="absolute"
       top={0}
       left={0}
@@ -35,7 +34,7 @@ const App: FC = () => {
     >
       {isValid ? (
         <Box
-          ref={graph}
+          ref={canvas}
           style={{
             width: isShowSettings ? 'calc(100% - 300px)' : '100%',
           }}

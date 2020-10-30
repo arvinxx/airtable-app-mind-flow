@@ -2,7 +2,7 @@ import G6 from '@antv/g6';
 import { GraphOptions } from '@antv/g6/lib/types';
 
 const minimap = new G6.Minimap({
-  size: [50, 50],
+  size: [140, 100],
   className: 'minimap',
   type: 'delegate',
 });
@@ -14,29 +14,27 @@ export const defaultConfig: Omit<GraphOptions, 'container'> = {
     default: ['zoom-canvas', 'drag-canvas'],
   },
   plugins: [minimap],
-  fitView: true,
+  fitView: false,
   fitViewPadding: [16, 16, 16, 16],
   animate: true,
   layout: {
     type: 'compactBox',
     direction: 'LR',
-    // getHGap: () => {
-    //   return 160;
-    // },
     getVGap: function getVGap() {
-      return 48;
+      return 36;
     },
     getHGap: function getHGap() {
-      return 160;
+      return 280;
     },
   },
   defaultNode: {
-    shape: 'flow-rect',
+    type: 'flow-rect',
   },
   defaultEdge: {
     type: 'cubic-horizontal',
     style: {
-      stroke: '#929292',
+      width: 2,
+      stroke: 'rgba(0,0,0,0.15)',
     },
   },
 };

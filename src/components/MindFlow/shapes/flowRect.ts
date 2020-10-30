@@ -1,6 +1,5 @@
-import G6 from '@antv/g6';
 import { ModelConfig } from '@antv/g6/es/types';
-import { ShapeRegisterDefinition } from './type';
+import { ShapeRegisterDefinition } from '../types';
 import { nameEllipsis } from '../../../utils';
 
 const colorMap = {
@@ -37,7 +36,7 @@ const flowRect: ShapeRegisterDefinition = {
 
     // 基本形状在这里绘制
     draw(cfg: FlowRectConfig, group) {
-      const { name = '', color, children, information, collapsed } = cfg;
+      const { name = '', color, children, information, collapsed, id } = cfg;
 
       const hexColor = colorMap[color];
 
@@ -79,6 +78,8 @@ const flowRect: ShapeRegisterDefinition = {
           x: 0,
           y: 0,
           ...rectConfig,
+          fill: hexColor,
+          opacity: 0.1,
         },
       });
 
@@ -95,6 +96,7 @@ const flowRect: ShapeRegisterDefinition = {
           cursor: 'pointer',
           isTitleShape: true,
         },
+        id,
       });
 
       // 添加输入信息
@@ -125,6 +127,7 @@ const flowRect: ShapeRegisterDefinition = {
               cursor: 'pointer',
               fill: 'rgba(0,0,0,0.25)',
             },
+            id: text === '...' ? id : info.id,
           });
         };
 

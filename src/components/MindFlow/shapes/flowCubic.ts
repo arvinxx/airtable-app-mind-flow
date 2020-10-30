@@ -1,6 +1,6 @@
 import { IPoint, ModelConfig } from '@antv/g6/es/types';
 import { INode } from '@antv/g6/es/interface/item';
-import { ShapeRegisterDefinition } from './type';
+import { ShapeRegisterDefinition } from '../types';
 
 interface FlowCubicConfig extends ModelConfig {
   controlPoints: IPoint[];

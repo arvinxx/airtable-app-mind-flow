@@ -18,7 +18,7 @@ import {
   SettingsState,
   useShowSettings,
 } from '../models';
-import { exportToPng, exportToSvg, ExportType } from '../utils/exportImage';
+import { exportToPng, exportToSvg, ExportType } from '../utils';
 
 interface SettingsProps {
   graph: MutableRefObject<HTMLDivElement>;
@@ -66,7 +66,7 @@ const Settings: FC<SettingsProps> = ({ settings, isValid, graph }) => {
         padding={3}
         overflowY="auto"
       >
-        <Heading marginBottom={3}>设置面板</Heading>
+        <Heading marginBottom={3}>设置</Heading>
         <FormField label="表格">
           <TablePickerSynced globalConfigKey={GlobalSettingsKeys.TABLE_ID} />
         </FormField>
@@ -81,14 +81,17 @@ const Settings: FC<SettingsProps> = ({ settings, isValid, graph }) => {
                 globalConfigKey={GlobalSettingsKeys.VIEW_ID}
               />
             </FormField>
-            <FormField label="How 字段" description="关联How 的字段">
+            <FormField label="思路/问题/行动点字段" description="关联 How 的字段">
               <FieldPickerSynced
                 table={settings.table}
                 globalConfigKey={GlobalSettingsKeys.HOW_FIELD_ID}
                 allowedTypes={allowedFieldTypes}
               />
-            </FormField>{' '}
-            <FormField label="Why 字段" description="关于 Information 的字段">
+            </FormField>
+            <FormField
+              label="信息输入字段"
+              description="关于信息输入的字段"
+            >
               <FieldPickerSynced
                 table={settings.table}
                 globalConfigKey={GlobalSettingsKeys.INFO_FIELD_ID}
@@ -122,22 +125,22 @@ const Settings: FC<SettingsProps> = ({ settings, isValid, graph }) => {
         borderTop="thick"
       >
         <Box display="flex" alignItems="center">
-          <Label marginRight={2} marginBottom={0}>
-            导出
-          </Label>
-          <Button
-            disabled={!isValid}
-            onClick={() => onExportGraph(ExportType.SVG)}
-            marginRight={2}
-          >
-            SVG
-          </Button>
-          <Button
-            disabled={!isValid}
-            onClick={() => onExportGraph(ExportType.PNG)}
-          >
-            PNG
-          </Button>
+          {/*<Label marginRight={2} marginBottom={0}>*/}
+          {/*  导出*/}
+          {/*</Label>*/}
+          {/*<Button*/}
+          {/*  disabled={!isValid}*/}
+          {/*  onClick={() => onExportGraph(ExportType.SVG)}*/}
+          {/*  marginRight={2}*/}
+          {/*>*/}
+          {/*  SVG*/}
+          {/*</Button>*/}
+          {/*<Button*/}
+          {/*  disabled={!isValid}*/}
+          {/*  onClick={() => onExportGraph(ExportType.PNG)}*/}
+          {/*>*/}
+          {/*  PNG*/}
+          {/*</Button>*/}
         </Box>
         <Button variant="primary" onClick={() => setShowSettings(false)}>
           确定

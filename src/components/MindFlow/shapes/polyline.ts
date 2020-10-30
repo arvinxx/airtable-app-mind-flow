@@ -1,4 +1,4 @@
-import { EdgeRegisterDefinition } from './type';
+import { EdgeRegisterDefinition } from '../types';
 import { ModelConfig } from '@antv/g6/es/types';
 
 const colorMap = {
