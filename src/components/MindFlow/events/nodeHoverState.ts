@@ -1,5 +1,5 @@
 import { Graph } from '@antv/g6';
-import { bindMouseEvent } from '../utils';
+import { bindMouseEvent } from './utils';
 
 /**
  * node hover 状态

@@ -13,6 +13,7 @@ const flowCubic: ShapeRegisterDefinition = {
   type: 'edge',
   name: 'flow-cubic',
   definition: {
+    itemType: 'edge',
     getControlPoints(cfg: FlowCubicConfig) {
       let controlPoints = cfg.controlPoints; // 指定controlPoints
 

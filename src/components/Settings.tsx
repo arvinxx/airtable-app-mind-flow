@@ -22,16 +22,12 @@ import { exportToPng, exportToSvg, ExportType } from '../utils/exportImage';
 
 interface SettingsProps {
   graph: MutableRefObject<HTMLDivElement>;
-  settingsValidationResult: {
-    settings: SettingsState;
-    isValid: boolean;
-  };
+  settings: SettingsState;
+  isValid: boolean;
 }
 
-const Settings: FC<SettingsProps> = ({ settingsValidationResult, graph }) => {
+const Settings: FC<SettingsProps> = ({ settings, isValid, graph }) => {
   const { setShowSettings } = useShowSettings();
-
-  const { settings, isValid } = settingsValidationResult;
 
   const onExportGraph = (exportType: ExportType) => {
     const { view } = settings;
@@ -52,12 +48,14 @@ const Settings: FC<SettingsProps> = ({ settingsValidationResult, graph }) => {
       throw new Error(`Unexpected export type: ${exportType}`);
     }
   };
+
   return (
     <Box
       flex="none"
       display="flex"
       flexDirection="column"
       width="300px"
+      zIndex={100}
       backgroundColor="white"
     >
       <Box
@@ -83,10 +81,17 @@ const Settings: FC<SettingsProps> = ({ settingsValidationResult, graph }) => {
                 globalConfigKey={GlobalSettingsKeys.VIEW_ID}
               />
             </FormField>
-            <FormField label="关联字段" description="互相关联的字段">
+            <FormField label="How 字段" description="关联How 的字段">
               <FieldPickerSynced
                 table={settings.table}
-                globalConfigKey={GlobalSettingsKeys.FIELD_ID}
+                globalConfigKey={GlobalSettingsKeys.HOW_FIELD_ID}
+                allowedTypes={allowedFieldTypes}
+              />
+            </FormField>{' '}
+            <FormField label="Why 字段" description="关于 Information 的字段">
+              <FieldPickerSynced
+                table={settings.table}
+                globalConfigKey={GlobalSettingsKeys.INFO_FIELD_ID}
                 allowedTypes={allowedFieldTypes}
               />
             </FormField>

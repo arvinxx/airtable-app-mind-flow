@@ -1,18 +1,42 @@
-// 默认配置
-export const defaultConfig = {
+import G6 from '@antv/g6';
+import { GraphOptions } from '@antv/g6/lib/types';
+
+const minimap = new G6.Minimap({
+  size: [50, 50],
+  className: 'minimap',
+  type: 'delegate',
+});
+
+export const defaultConfig: Omit<GraphOptions, 'container'> = {
   width: 1600,
   height: 800,
   modes: {
     default: ['zoom-canvas', 'drag-canvas'],
   },
-  padding: [20, 50],
-  defaultLevel: 3,
-  defaultZoom: 0.8,
-  fitView: false,
+  plugins: [minimap],
+  fitView: true,
+  fitViewPadding: [16, 16, 16, 16],
   animate: true,
+  layout: {
+    type: 'compactBox',
+    direction: 'LR',
+    // getHGap: () => {
+    //   return 160;
+    // },
+    getVGap: function getVGap() {
+      return 48;
+    },
+    getHGap: function getHGap() {
+      return 160;
+    },
+  },
+  defaultNode: {
+    shape: 'flow-rect',
+  },
   defaultEdge: {
+    type: 'cubic-horizontal',
     style: {
-      stroke: '#1890FF',
+      stroke: '#929292',
     },
   },
 };

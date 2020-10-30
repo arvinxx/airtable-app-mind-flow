@@ -1,24 +1,29 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { Box } from '@airtable/blocks/ui';
 import { Settings, MindFlow } from './components';
-import { useSettings, useShowSettings } from './models';
+import { useStore, useShowSettings } from './models';
 import { loadCSS } from './globalStyle';
+import { useSize } from 'ahooks';
+import { height } from '@airtable/blocks/dist/types/src/ui/system';
 
 loadCSS();
 
 const App: FC = () => {
   const { isShowSettings, setShowSettings } = useShowSettings();
-  const settings = useSettings();
+  const { settings, isValid } = useStore();
   const graph = useRef(null);
+  const canvas = useRef(null);
 
+  const size = useSize(canvas);
   useEffect(() => {
-    if (!settings.isValid) {
+    if (!isValid && !isShowSettings) {
       setShowSettings(true);
     }
-  }, [setShowSettings, settings.isValid]);
+  }, [setShowSettings, isValid, isShowSettings]);
 
   return (
     <Box
+      ref={canvas}
       position="absolute"
       top={0}
       left={0}
@@ -28,10 +33,22 @@ const App: FC = () => {
       backgroundColor="#f5f5f5"
       overflow="hidden"
     >
-      <Box ref={graph}>{/*<MindFlow />*/}123</Box>
+      {isValid ? (
+        <Box
+          ref={graph}
+          style={{
+            width: isShowSettings ? 'calc(100% - 300px)' : '100%',
+          }}
+        >
+          <MindFlow width={size.width} height={size.height} />
+        </Box>
+      ) : (
+        <Box flex={1}>123</Box>
+      )}
+
       {/*<FlowGraph graph={graph} />*/}
       {isShowSettings && (
-        <Settings graph={graph} settingsValidationResult={settings} />
+        <Settings graph={graph} settings={settings} isValid={isValid} />
       )}
     </Box>
   );
