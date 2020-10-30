@@ -5,16 +5,8 @@ import {
   Table,
   View,
 } from '@airtable/blocks/models';
-import { useBase, useGlobalConfig } from '@airtable/blocks/ui';
-
-export const ConfigKeys = {
-  TABLE_ID: 'tableId',
-  VIEW_ID: 'viewId',
-  FIELD_ID: 'fieldId',
-  CHART_ORIENTATION: 'chartOrientation',
-  LINK_STYLE: 'linkStyle',
-  RECORD_SHAPE: 'recordShape',
-};
+import { useBase } from '@airtable/blocks/ui';
+import { useGlobalSettings } from './useGlobalSettings';
 
 export const allowedFieldTypes = [FieldType.MULTIPLE_RECORD_LINKS];
 
@@ -42,44 +34,6 @@ export interface SettingsState {
   view: View;
   field: Field;
   queryResult: RecordQueryResult;
-  chartOrientation: ChartOrientation;
-  linkStyle: LinkStyle;
-  recordShape: RecordShape;
-}
-
-const defaults = Object.freeze({
-  [ConfigKeys.CHART_ORIENTATION]: ChartOrientation.VERTICAL,
-  [ConfigKeys.LINK_STYLE]: LinkStyle.RIGHT_ANGLES,
-  [ConfigKeys.RECORD_SHAPE]: RecordShape.ROUNDED,
-});
-
-/**
- * Reads the values stored in GlobalConfig and inserts defaults for missing values
- * @param { GlobalConfig } globalConfig
- * @returns {{
- *     tableId?: string,
- *     viewId?: string,
- *     fieldId?: string,
- *     chartOrientation: ChartOrientation,
- *     linkStyle: LinkStyle,
- *     recordShape: RecordShape,
- * }}
- */
-function getRawSettingsWithDefaults(globalConfig) {
-  const rawSettings = {};
-  for (const globalConfigKey of Object.values(ConfigKeys)) {
-    const storedValue = globalConfig.get(globalConfigKey);
-    if (
-      storedValue === undefined &&
-      Object.prototype.hasOwnProperty.call(defaults, globalConfigKey)
-    ) {
-      rawSettings[globalConfigKey] = defaults[globalConfigKey];
-    } else {
-      rawSettings[globalConfigKey] = storedValue;
-    }
-  }
-
-  return rawSettings;
 }
 
 /**
@@ -110,9 +64,6 @@ function getSettings(rawSettings, base): SettingsState {
     view,
     field,
     queryResult,
-    chartOrientation: rawSettings.chartOrientation,
-    linkStyle: rawSettings.linkStyle,
-    recordShape: rawSettings.recordShape,
   };
 }
 
@@ -154,8 +105,7 @@ function getSettingsValidationResult(settings) {
  */
 export const useSettings = () => {
   const base = useBase();
-  const globalConfig = useGlobalConfig();
-  const rawSettings = getRawSettingsWithDefaults(globalConfig);
+  const rawSettings = useGlobalSettings();
   const settings = getSettings(rawSettings, base);
   return getSettingsValidationResult(settings);
 };

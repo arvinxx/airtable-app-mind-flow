@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { Box } from '@airtable/blocks/ui';
-import { Settings, FlowGraph } from './components';
+import { Settings, MindFlow } from './components';
 import { useSettings, useShowSettings } from './models';
 import { loadCSS } from './globalStyle';
 
@@ -28,7 +28,8 @@ const App: FC = () => {
       backgroundColor="#f5f5f5"
       overflow="hidden"
     >
-      <FlowGraph graph={graph} />
+      <Box ref={graph}>{/*<MindFlow />*/}123</Box>
+      {/*<FlowGraph graph={graph} />*/}
       {isShowSettings && (
         <Settings graph={graph} settingsValidationResult={settings} />
       )}

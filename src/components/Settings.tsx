@@ -7,8 +7,6 @@ import {
   Heading,
   Label,
   Link,
-  SelectButtonsSynced,
-  SelectSynced,
   TablePickerSynced,
   Text,
   ViewPickerSynced,
@@ -16,10 +14,7 @@ import {
 
 import {
   allowedFieldTypes,
-  ConfigKeys,
-  LinkStyle,
-  ChartOrientation,
-  RecordShape,
+  GlobalSettingsKeys,
   SettingsState,
   useShowSettings,
 } from '../models';
@@ -75,7 +70,7 @@ const Settings: FC<SettingsProps> = ({ settingsValidationResult, graph }) => {
       >
         <Heading marginBottom={3}>设置面板</Heading>
         <FormField label="表格">
-          <TablePickerSynced globalConfigKey={ConfigKeys.TABLE_ID} />
+          <TablePickerSynced globalConfigKey={GlobalSettingsKeys.TABLE_ID} />
         </FormField>
         {settings.table && (
           <Fragment>
@@ -85,52 +80,14 @@ const Settings: FC<SettingsProps> = ({ settingsValidationResult, graph }) => {
             >
               <ViewPickerSynced
                 table={settings.table}
-                globalConfigKey={ConfigKeys.VIEW_ID}
+                globalConfigKey={GlobalSettingsKeys.VIEW_ID}
               />
             </FormField>
             <FormField label="关联字段" description="互相关联的字段">
               <FieldPickerSynced
                 table={settings.table}
-                globalConfigKey={ConfigKeys.FIELD_ID}
+                globalConfigKey={GlobalSettingsKeys.FIELD_ID}
                 allowedTypes={allowedFieldTypes}
-              />
-            </FormField>
-            <FormField
-              label="图表方向"
-              description={`所有节点将会按照下述方向进行连接 ${
-                settings.chartOrientation === ChartOrientation.HORIZONTAL
-                  ? ChartOrientation.VERTICAL
-                  : ChartOrientation.HORIZONTAL
-              }`}
-            >
-              <SelectButtonsSynced
-                options={[
-                  { label: '纵向', value: ChartOrientation.VERTICAL },
-                  { label: '横向', value: ChartOrientation.HORIZONTAL },
-                ]}
-                globalConfigKey={ConfigKeys.CHART_ORIENTATION}
-              />
-            </FormField>
-            <FormField label="链接样式">
-              <SelectButtonsSynced
-                options={[
-                  { label: '直角', value: LinkStyle.RIGHT_ANGLES },
-                  { label: '直线', value: LinkStyle.STRAIGHT_LINES },
-                  { label: '曲线', value: LinkStyle.CURVED_LINES },
-                ]}
-                globalConfigKey={ConfigKeys.LINK_STYLE}
-              />
-            </FormField>
-            <FormField label="节点形状">
-              <SelectSynced
-                options={[
-                  { label: '请选择节点形状...', value: null, disabled: true },
-                  { label: '圆角矩形', value: RecordShape.ROUNDED },
-                  { label: '矩形', value: RecordShape.RECTANGLE },
-                  { label: '椭圆', value: RecordShape.ELLIPSE },
-                  { label: '正圆', value: RecordShape.CIRCLE },
-                ]}
-                globalConfigKey={ConfigKeys.RECORD_SHAPE}
               />
             </FormField>
             <Box marginBottom={1}>

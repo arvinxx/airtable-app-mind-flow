@@ -1,6 +1,9 @@
 {
     "dependencies": {
         "@airtable/blocks": "1.2.0",
+        "@antv/g6": "^3.8.3",
+        "ahooks": "^2.7.1",
+        "lodash": "^4.17.20",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
         "save-svg-as-png": "^1.4.17",
