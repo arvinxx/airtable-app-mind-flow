@@ -8,7 +8,7 @@ const colorMap = {
   orangeLight2: '#ff4d4f',
 };
 
-interface FlowRectConfig extends ModelConfig {
+export interface FlowRectNode extends ModelConfig {
   name: string;
   /**
    * 颜色
@@ -35,26 +35,14 @@ const flowRect: ShapeRegisterDefinition = {
     type: 'flow-rect',
 
     // 基本形状在这里绘制
-    draw(cfg: FlowRectConfig, group) {
+    draw(cfg: FlowRectNode, group) {
       const { name = '', color, children, information, collapsed, id } = cfg;
 
       const hexColor = colorMap[color];
 
       const baseWidth = 200;
 
-      let baseHeight = 64;
-
-      switch (information.length) {
-        case 0:
-        case 1:
-          baseHeight = 64;
-          break;
-        case 2:
-          baseHeight = 80;
-          break;
-        default:
-          baseHeight = 110;
-      }
+      const baseHeight = getHeightByInfoLength(information.length);
 
       const rectConfig = {
         width: baseWidth,
@@ -80,7 +68,9 @@ const flowRect: ShapeRegisterDefinition = {
           ...rectConfig,
           fill: hexColor,
           opacity: 0.1,
+          cursor: 'pointer',
         },
+        id,
       });
 
       // 标题
@@ -229,3 +219,18 @@ const flowRect: ShapeRegisterDefinition = {
   extendShapeType: 'rect',
 };
 export default flowRect;
+
+export const getHeightByInfoLength = (length) => {
+  switch (length) {
+    case 0:
+      return 30;
+    case 1:
+      return 64;
+    case 2:
+      return 80;
+    case 3:
+      return 100;
+    default:
+      return 110;
+  }
+};
