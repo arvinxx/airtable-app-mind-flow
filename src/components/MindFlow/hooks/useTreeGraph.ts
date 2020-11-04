@@ -10,7 +10,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
   const { settings } = useStore();
   const [treeGraph, setTreeGraph] = useState<TreeGraph>(null);
 
-  const { container } = config;
+  const { container, width, height } = config;
 
   // 当配置变更时,自动更新 treeGraph
   useEffect(() => {
@@ -26,15 +26,30 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
         ...config,
       })
     );
-  }, [container, config.width, config.height]);
+  }, [container]);
 
+  useEffect(() => {
+    treeGraph?.changeSize(width, height);
+  }, [width, height]);
   // 当 treeGraph 更新时,重新渲染图
   useEffect(() => {
     if (!treeGraph) return;
 
+    // 获取缩放倍数
+    const zoomRatio = treeGraph.getZoom();
+    //在拉取新数据重新渲染页面之前先获取点（0， 0）在画布上的位置
+    const lastPoint = treeGraph.getCanvasByPoint(0, 0);
+
     transformData(settings).then((data) => {
       treeGraph.data(data);
       treeGraph.render();
+
+      // 进行缩放
+      treeGraph.zoomTo(zoomRatio);
+
+      //获取重新渲染之后点（0， 0）在画布的位置
+      const newPoint = treeGraph.getCanvasByPoint(0, 0);
+      treeGraph.translate(lastPoint.x - newPoint.x, lastPoint.y - newPoint.y);
     });
   }, [treeGraph, settings]);
 
