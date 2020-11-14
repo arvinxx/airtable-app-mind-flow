@@ -7,6 +7,7 @@ const minimap = new G6.Minimap({
   className: 'minimap',
   type: 'delegate',
 });
+const toolbar = new G6.ToolBar();
 
 export const defaultConfig: Omit<GraphOptions, 'container'> = {
   width: 1600,
@@ -14,7 +15,7 @@ export const defaultConfig: Omit<GraphOptions, 'container'> = {
   modes: {
     default: ['zoom-canvas', 'drag-canvas'],
   },
-  plugins: [minimap],
+  plugins: [minimap, toolbar],
   fitView: true,
   fitViewPadding: 8,
   animate: false,

@@ -1,4 +1,5 @@
 import { ShapeDefine, ShapeOptions } from '@antv/g6/lib/interface/shape';
+import { ModelConfig } from '@antv/g6/es/types';
 
 interface AbstractShapeDefinition {
   type: string;
@@ -8,8 +9,17 @@ interface AbstractShapeDefinition {
 }
 
 export interface NodeRegisterDefinition extends AbstractShapeDefinition {
-  type: 'node';
   definition: ShapeOptions | ShapeDefine;
+}
+export interface NodeRegisterJSX
+  extends Omit<AbstractShapeDefinition, 'definition'> {
+  type: 'node';
+  /**
+   * 使用 jsx 的方式定义节点
+   */
+  jsx?: (config: ModelConfig) => string;
+  definition?: any;
+  extendShapeType?: string;
 }
 
 export interface EdgeRegisterDefinition extends AbstractShapeDefinition {
@@ -19,4 +29,5 @@ export interface EdgeRegisterDefinition extends AbstractShapeDefinition {
 
 export type ShapeRegisterDefinition =
   | NodeRegisterDefinition
+  | NodeRegisterJSX
   | EdgeRegisterDefinition;

@@ -2,7 +2,7 @@ import { ModelConfig } from '@antv/g6/es/types';
 import { ShapeRegisterDefinition } from '../types';
 import { nameEllipsis } from '../../../utils';
 
-const colorMap = {
+export const colorMap = {
   greenLight2: '#52c41a',
   yellowLight2: '#faad14',
   orangeLight2: '#ff4d4f',
@@ -218,6 +218,7 @@ const flowRect: ShapeRegisterDefinition = {
   // 注意这里继承了 'single-shape'
   extendShapeType: 'rect',
 };
+
 export default flowRect;
 
 export const getHeightByInfoLength = (length) => {
