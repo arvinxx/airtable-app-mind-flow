@@ -4,6 +4,8 @@ import { Record } from '@airtable/blocks/models';
 export const transformData = async (settings: SettingsState) => {
   const { queryResult, view, infoField, howField } = settings;
 
+  if (!queryResult) return;
+
   await queryResult.loadDataAsync();
 
   const firstNode = queryResult.records[0];

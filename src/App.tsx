@@ -31,20 +31,14 @@ const App: FC = () => {
       backgroundColor="#f5f5f5"
       overflow="hidden"
     >
-      {isValid ? (
-        <Box
-          ref={canvas}
-          style={{
-            width: isShowSettings ? 'calc(100% - 300px)' : '100%',
-          }}
-        >
-          <MindFlow width={size.width} height={size.height} />
-        </Box>
-      ) : (
-        <Box flex={1}>123</Box>
-      )}
-
-      {/*<FlowGraph graph={graph} />*/}
+      <Box
+        ref={canvas}
+        style={{
+          width: isShowSettings ? 'calc(100% - 300px)' : '100%',
+        }}
+      >
+        <MindFlow width={size.width} height={size.height} />
+      </Box>
       {isShowSettings && (
         <Settings graph={graph} settings={settings} isValid={isValid} />
       )}

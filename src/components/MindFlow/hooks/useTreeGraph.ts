@@ -8,14 +8,16 @@ import { useStore } from '../../../models';
 
 let firstRender = true;
 export const useTreeGraph = (config: Partial<GraphOptions>) => {
-  const { settings } = useStore();
+  const { settings, isValid } = useStore();
   const [treeGraph, setTreeGraph] = useState<TreeGraph>(null);
 
   const { container, width, height } = config;
 
   // 当配置变更时,自动更新 treeGraph
   useEffect(() => {
-    if (!container) return;
+    // 没有 container 或者无效的时候 都不更新
+    if (!container || !isValid) return;
+
     // 如果没有初始化 那么注册图形
     if (!treeGraph) {
       registerShapes();
@@ -28,7 +30,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
         ...config,
       })
     );
-  }, [container]);
+  }, [container, isValid]);
 
   // 当长宽高变化时,更新尺寸
   useEffect(() => {
