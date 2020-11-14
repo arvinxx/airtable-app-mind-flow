@@ -21,7 +21,7 @@ const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
     height: height,
   });
 
-  console.log('MindFlow/treeGraph:', treeGraph);
+  // console.log('MindFlow/treeGraph:', treeGraph);
   useOpenExpandPanel(treeGraph);
 
   return <Box ref={ref} position={'relative'} />;

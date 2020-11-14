@@ -4,7 +4,6 @@ import { Settings, MindFlow } from './components';
 import { useStore, useShowSettings } from './models';
 import { loadCSS } from './globalStyle';
 import { useSize } from 'ahooks';
-import { height } from '@airtable/blocks/dist/types/src/ui/system';
 
 loadCSS();
 
