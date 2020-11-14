@@ -1,6 +1,6 @@
 import G6 from '@antv/g6';
 import { GraphOptions } from '@antv/g6/lib/types';
-import { getHeightByInfoLength, FlowRectNode } from './shapes/flowRect';
+import { getHeightByInfoLength, FlowRectNode } from './shapes/node';
 
 const minimap = new G6.Minimap({
   size: [140, 100],

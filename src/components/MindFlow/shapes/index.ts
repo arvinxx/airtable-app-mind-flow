@@ -1,12 +1,12 @@
 import G6 from '@antv/g6';
-import flowRect from './flowRect';
-import flowCubic from './flowCubic';
+import node from './node';
+import flowLine from './flowLine';
 // import mindNode from './mindNode';
 
 export const shapes = [
-  flowRect,
-  // mindNode
-  flowCubic,
+  node,
+  // mindNode,
+  flowLine,
 ];
 
 export const registerShapes = () => {

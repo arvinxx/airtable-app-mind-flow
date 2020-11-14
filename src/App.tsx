@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useRef } from 'react';
-import { Box, colors } from '@airtable/blocks/ui';
+import { useSize } from 'ahooks';
+import { Box } from '@airtable/blocks/ui';
 import { Settings, MindFlow } from './components';
 import { useStore, useShowSettings } from './models';
 import { loadCSS } from './globalStyle';
-import { useSize } from 'ahooks';
 
 loadCSS();
 

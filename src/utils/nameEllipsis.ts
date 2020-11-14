@@ -1,5 +1,11 @@
 import G6 from '@antv/g6';
 
+/**
+ * 显示省略的文本
+ * @param name
+ * @param maxWidth
+ * @param fontSize
+ */
 export const nameEllipsis = (name, maxWidth = 16, fontSize = 14) => {
   let str: string = name;
   let textWidth = G6.Util.getTextSize(str, 12)[0];

@@ -1,6 +1,10 @@
 import { SettingsState } from '../models';
 import { Record } from '@airtable/blocks/models';
 
+/**
+ * 给 treeGraph 使用的数据转换方法
+ * @param settings
+ */
 export const transformData = async (settings: SettingsState) => {
   const { queryResult, view, infoField, howField } = settings;
 

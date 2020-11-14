@@ -20,7 +20,7 @@
     },
     "scripts": {
         "start": "block run",
-        "release": "block release",
+        "release": "./scripts/release.sh",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx src"
     }
 }

@@ -28,7 +28,7 @@ export interface FlowRectNode extends ModelConfig {
 /**
  * 节点对象
  */
-const flowRect: ShapeRegisterDefinition = {
+const node: ShapeRegisterDefinition = {
   type: 'node',
   name: 'flow-rect',
   definition: {
@@ -219,7 +219,7 @@ const flowRect: ShapeRegisterDefinition = {
   extendShapeType: 'rect',
 };
 
-export default flowRect;
+export default node;
 
 export const getHeightByInfoLength = (length) => {
   switch (length) {

@@ -9,7 +9,7 @@ interface FlowCubicConfig extends ModelConfig {
 /**
  * 三次贝塞尔曲线
  */
-const flowCubic: ShapeRegisterDefinition = {
+const flowLine: ShapeRegisterDefinition = {
   type: 'edge',
   name: 'flow-cubic',
   definition: {
@@ -60,4 +60,4 @@ const flowCubic: ShapeRegisterDefinition = {
   },
   extendShapeType: 'single-line',
 };
-export default flowCubic;
+export default flowLine;
