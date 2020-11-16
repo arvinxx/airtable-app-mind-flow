@@ -1,3 +1,5 @@
+import G6 from '@antv/g6';
+
 import { ModelConfig } from '@antv/g6/es/types';
 import { ShapeRegisterDefinition } from '../types';
 import { nameEllipsis } from '../../../utils';
@@ -70,6 +72,7 @@ const node: ShapeRegisterDefinition = {
           opacity: 0.1,
           cursor: 'pointer',
         },
+        draggable: true,
         id,
       });
 
@@ -141,7 +144,7 @@ const node: ShapeRegisterDefinition = {
       // 绘制折叠按钮
       if (children.length > 0) {
         // collapse circle
-        group.addShape('circle', {
+        group.addShape('marker', {
           attrs: {
             x: rectConfig.width,
             y: rectConfig.height / 2,
@@ -150,24 +153,9 @@ const node: ShapeRegisterDefinition = {
             fill: collapsed ? hexColor : '#fff',
             isCollapseShape: true,
             cursor: 'pointer',
+            symbol: G6.Marker.collapse,
           },
-        });
-
-        // collapse text
-        group.addShape('text', {
-          attrs: {
-            x: rectConfig.width,
-            y: rectConfig.height / 2 - 1,
-            width: 15,
-            height: 15,
-            textAlign: 'center',
-            textBaseline: 'middle',
-            text: collapsed ? '+' : '-',
-            fontSize: 15,
-            fill: collapsed ? '#fff' : hexColor,
-            isCollapseShape: true,
-            cursor: 'pointer',
-          },
+          name: 'collapse-icon',
         });
       }
 
@@ -179,33 +167,13 @@ const node: ShapeRegisterDefinition = {
       const group = item.getContainer();
       this.updateLinkPoints(cfg, group);
     },
-    setState(name, value, item) {
-      if (name === 'click' && value) {
-        const group = item.getContainer();
-        const { collapsed } = item.getModel();
-        const [, , , , , , CircleShape, TextShape] = group.get('children');
-        if (TextShape) {
-          const {
-            attrs: { stroke },
-          } = CircleShape;
-          if (!collapsed) {
-            TextShape.attr({
-              text: '-',
-              fill: stroke,
-            });
-            CircleShape.attr({
-              fill: '#fff',
-            });
-          } else {
-            TextShape.attr({
-              text: '+',
-              fill: '#fff',
-            });
-            CircleShape.attr({
-              fill: stroke,
-            });
-          }
-        }
+    setState(event, state, item) {
+      if (event === 'click' && state) {
+        const marker = item
+          .get('group')
+          .find((ele) => ele.get('name') === 'collapse-icon');
+        const icon = state ? G6.Marker.expand : G6.Marker.collapse;
+        marker.attr('symbol', icon);
       }
     },
     getAnchorPoints() {

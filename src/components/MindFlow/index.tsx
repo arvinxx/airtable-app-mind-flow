@@ -2,7 +2,7 @@ import React, { FC, useRef } from 'react';
 import { Box, colors } from '@airtable/blocks/ui';
 import { loadCSSFromString } from '@airtable/blocks/ui';
 
-import { useTreeGraph, useOpenExpandPanel } from './hooks';
+import { useTreeGraph, useOpenExpandPanel, useCollapsedNode } from './hooks';
 import { globalStyle } from '../globalStyle';
 import { useStore } from '../../models';
 
@@ -22,8 +22,8 @@ const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
     width,
     height: height,
   });
-
   useOpenExpandPanel(treeGraph);
+  useCollapsedNode(treeGraph);
 
   return (
     <Box ref={ref} position={'relative'}>
