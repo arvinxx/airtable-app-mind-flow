@@ -43,10 +43,12 @@ export const handleHover = (event: string, value, item?: Item) => {
     const background: IElement = item
       .get('group')
       .find((e) => e.get('name') === 'background');
-    background.animate(
-      { opacity: isBackground ? 0.2 : 0.1 },
-      { duration: 100 }
-    );
+    if (background) {
+      background?.animate(
+        { opacity: isBackground ? 0.2 : 0.1 },
+        { duration: 100 }
+      );
+    }
 
     const isMarker = value === 'collapse-icon';
     const marker: IElement = item
