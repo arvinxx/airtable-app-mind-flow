@@ -13,7 +13,35 @@ export const defaultConfig: Omit<GraphOptions, 'container'> = {
   width: 1600,
   height: 800,
   modes: {
-    default: ['zoom-canvas', 'drag-canvas'],
+    default: [
+      'zoom-canvas',
+      'drag-canvas',
+      {
+        type: 'tooltip', // 提示框
+        // 提示框文本内容
+        offset: 16,
+        formatText(model: FlowNode) {
+          return `
+            <div>
+            <div class="g6-tooltip-title">🚩 ${model.name}</div>
+           ${
+             model.description
+               ? `<div class="g6-tooltip-description">${model.description}</div>`
+               : ''
+           }
+           ${
+             model.information.length > 0
+               ? `<div>
+<div class="g6-tooltip-information">💡 相关信息源/场景/前置条件</div>
+${model.information
+  .map((info) => `<div class="g6-tooltip-info-item">· ${info.name}</div>`)
+  .join('')}</div>`
+               : ''
+           }</div>
+          `;
+        },
+      },
+    ],
   },
   plugins: [minimap, toolbar],
   fitView: true,

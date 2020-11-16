@@ -22,9 +22,11 @@ export const transformData = async (settings: SettingsState) => {
 
     const childrenInPromise = howRecords.records.map(mapRecordToData);
     const children = await Promise.all(childrenInPromise);
+
     return {
       id: record.id,
       name: record.name,
+      description: record?.getCellValue('描述'),
       color: record.getColorInView(view),
       information: infoRecords.records.map((r) => ({ id: r.id, name: r.name })),
       children,

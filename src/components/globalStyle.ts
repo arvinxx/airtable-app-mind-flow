@@ -7,4 +7,39 @@ export const globalStyle = `
   bottom: 0;
   background: white;
   opacity:0.7
-}`;
+}
+
+.g6-tooltip {
+  border-radius: 4px;
+  font-size: 12px;
+  color: #545454;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 12px 16px;
+  width: 300px;
+  box-shadow: rgba(0,0,0,0.09) 0px 4px 8px;
+}
+.g6-tooltip-title {
+  font-size: 14px;
+  color:rgba(0,0,0,0.65);
+  font-weight: bold;
+}
+.g6-tooltip-description {
+  margin-top: 8px;
+  color:rgba(0,0,0,0.65);
+  font-size: 12px;
+}
+.g6-tooltip-information {
+  margin: 16px 0 8px;
+  color:rgba(0,0,0,0.65);
+  font-size: 12px;
+  font-weight: bold;
+  padding-top:8px;
+  border-top: solid 1px rgba(0,0,0,0.09);
+}
+.g6-tooltip-info-item {
+  color:rgba(0,0,0,0.45);
+  font-size: 12px;
+  margin-left: 4px;
+  margin-bottom: 4px;
+}
+`;

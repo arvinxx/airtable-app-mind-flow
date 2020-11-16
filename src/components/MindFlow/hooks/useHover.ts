@@ -45,7 +45,7 @@ export const handleHover = (event: string, value, item?: Item) => {
       .find((e) => e.get('name') === 'background');
     if (background) {
       background?.animate(
-        { opacity: isBackground ? 0.2 : 0.1 },
+        { opacity: isBackground ? 0.15 : 0.1 },
         { duration: 100 }
       );
     }
@@ -61,7 +61,7 @@ export const handleHover = (event: string, value, item?: Item) => {
         {
           fill: isMarker ? mindFlowColors[color] : '#fff',
           stroke: isMarker ? '#fff' : mindFlowColors[color],
-          // r: isMarker ? 10 : 8,
+          r: isMarker ? 10 : 8,
         },
         { duration: 100 }
       );

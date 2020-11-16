@@ -13,6 +13,8 @@ export const colorMap = {
 
 export interface FlowNode extends NodeConfig {
   name: string;
+
+  description?: string;
   /**
    * 颜色
    */
