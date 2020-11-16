@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { TreeGraph } from '@antv/g6';
+import G6, { TreeGraph } from '@antv/g6';
+import { Item } from '@antv/g6/lib/types';
 
 /**
  * 点击对象打开操作面板的 hooks
@@ -21,5 +22,28 @@ export const useCollapsedNode = (treeGraph: TreeGraph | undefined) => {
     };
 
     treeGraph.on('node:click', collapsedNode);
+    return () => {
+      treeGraph.off('node:click');
+    };
   }, [treeGraph]);
+};
+
+/**
+ * 根据事件状态值修改折叠按钮
+ * @param event
+ * @param value
+ * @param item
+ */
+export const handleCollapsedIcon = (
+  event: string,
+  value: boolean | string,
+  item: Item
+) => {
+  if (event === 'collapsed') {
+    const marker = item
+      .get('group')
+      .find((ele) => ele.get('name') === 'collapse-icon');
+    const icon = value ? G6.Marker.expand : G6.Marker.collapse;
+    marker.attr('symbol', icon);
+  }
 };

@@ -1,6 +1,6 @@
 import G6 from '@antv/g6';
 import { GraphOptions } from '@antv/g6/lib/types';
-import { getHeightByInfoLength, FlowRectNode } from './shapes/node';
+import { getHeightByInfoLength, FlowNode } from './shapes/node';
 
 const minimap = new G6.Minimap({
   size: [140, 100],
@@ -23,14 +23,14 @@ export const defaultConfig: Omit<GraphOptions, 'container'> = {
     type: 'compactBox',
     direction: 'LR',
     getWidth: () => 200,
-    getHeight: (node: FlowRectNode) =>
+    getHeight: (node: FlowNode) =>
       getHeightByInfoLength(node?.information.length),
     // 间距
     getVGap: () => 16,
     getHGap: () => 64,
   },
   defaultNode: {
-    type: 'flow-rect',
+    type: 'flow-node',
   },
   defaultEdge: {
     type: 'cubic-horizontal',

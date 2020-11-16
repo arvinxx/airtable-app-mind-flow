@@ -1,8 +1,9 @@
 import G6 from '@antv/g6';
 
-import { ModelConfig } from '@antv/g6/es/types';
+import { NodeConfig } from '@antv/g6/es/types';
 import { ShapeRegisterDefinition } from '../types';
 import { nameEllipsis } from '../../../utils';
+import { handleCollapsedIcon, handleHover } from '../hooks';
 
 export const colorMap = {
   greenLight2: '#52c41a',
@@ -10,7 +11,7 @@ export const colorMap = {
   orangeLight2: '#ff4d4f',
 };
 
-export interface FlowRectNode extends ModelConfig {
+export interface FlowNode extends NodeConfig {
   name: string;
   /**
    * 颜色
@@ -32,13 +33,12 @@ export interface FlowRectNode extends ModelConfig {
  */
 const node: ShapeRegisterDefinition = {
   type: 'node',
-  name: 'flow-rect',
+  name: 'flow-node',
   definition: {
-    type: 'flow-rect',
-
+    type: 'flow-node',
     // 基本形状在这里绘制
-    draw(cfg: FlowRectNode, group) {
-      const { name = '', color, children, information, collapsed, id } = cfg;
+    draw(cfg: FlowNode, group) {
+      const { name = '', color, children, information, id } = cfg;
 
       const hexColor = colorMap[color];
 
@@ -62,7 +62,7 @@ const node: ShapeRegisterDefinition = {
         textBaseline: 'top',
       };
 
-      // 基本形状?
+      // 基本形状
       const rect = group.addShape('rect', {
         attrs: {
           x: 0,
@@ -74,8 +74,8 @@ const node: ShapeRegisterDefinition = {
         },
         draggable: true,
         id,
+        name: 'background',
       });
-
       // 标题
       group.addShape('text', {
         attrs: {
@@ -150,8 +150,7 @@ const node: ShapeRegisterDefinition = {
             y: rectConfig.height / 2,
             r: 8,
             stroke: hexColor,
-            fill: collapsed ? hexColor : '#fff',
-            isCollapseShape: true,
+            fill: '#fff',
             cursor: 'pointer',
             symbol: G6.Marker.collapse,
           },
@@ -167,14 +166,9 @@ const node: ShapeRegisterDefinition = {
       const group = item.getContainer();
       this.updateLinkPoints(cfg, group);
     },
-    setState(event, state, item) {
-      if (event === 'click' && state) {
-        const marker = item
-          .get('group')
-          .find((ele) => ele.get('name') === 'collapse-icon');
-        const icon = state ? G6.Marker.expand : G6.Marker.collapse;
-        marker.attr('symbol', icon);
-      }
+    setState(event, value, item) {
+      handleCollapsedIcon(event, value, item);
+      handleHover(event, value, item);
     },
     getAnchorPoints() {
       return [

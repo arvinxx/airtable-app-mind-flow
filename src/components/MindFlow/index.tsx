@@ -1,17 +1,21 @@
 import React, { FC, useRef } from 'react';
-import { Box, colors } from '@airtable/blocks/ui';
-import { loadCSSFromString } from '@airtable/blocks/ui';
+import { Box, loadCSSFromString } from '@airtable/blocks/ui';
 
-import { useTreeGraph, useOpenExpandPanel, useCollapsedNode } from './hooks';
+import {
+  useTreeGraph,
+  useOpenExpandPanel,
+  useCollapsedNode,
+  useHover,
+} from './hooks';
 import { globalStyle } from '../globalStyle';
 import { useStore } from '../../models';
+
+loadCSSFromString(globalStyle);
 
 interface MindFlowProps {
   width: number;
   height: number;
 }
-
-loadCSSFromString(globalStyle);
 
 const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
   const ref = useRef<HTMLDivElement>();
@@ -22,8 +26,10 @@ const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
     width,
     height: height,
   });
+
   useOpenExpandPanel(treeGraph);
   useCollapsedNode(treeGraph);
+  useHover(treeGraph);
 
   return (
     <Box ref={ref} position={'relative'}>

@@ -1,13 +1,8 @@
 import G6 from '@antv/g6';
 import node from './node';
 import flowLine from './flowLine';
-// import mindNode from './mindNode';
 
-export const shapes = [
-  node,
-  // mindNode,
-  flowLine,
-];
+export const shapes = [node, flowLine];
 
 export const registerShapes = () => {
   shapes.forEach((shape) => {
