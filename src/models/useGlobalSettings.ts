@@ -1,24 +1,26 @@
 import { useGlobalConfig } from '@airtable/blocks/ui';
 
 export const GlobalSettingsKeys = {
+  LANGUAGE: 'LANGUAGE',
   TABLE_ID: 'TABLE_ID',
   VIEW_ID: 'VIEW_ID',
   HOW_FIELD_ID: 'HOW_FIELD_ID',
-  INFO_FIELD_ID: 'INFO_FIELD_ID',
+  WHY_HOW_FIELD_ID: 'WHY_HOW_FIELD_ID',
+  WHY_THIS_FIELD_ID: 'WHY_THIS_FIELD_ID',
 };
 
-export interface GlobalSettingsState {
-  HOW_FIELD_ID: string;
-  INFO_FIELD_ID: string;
-  TABLE_ID: string;
-  VIEW_ID: string;
-}
+export type GlobalSettingsState = Record<
+  keyof typeof GlobalSettingsKeys,
+  string
+>;
 
 const defaultState: GlobalSettingsState = {
+  LANGUAGE: 'en',
   HOW_FIELD_ID: '',
-  INFO_FIELD_ID: '',
+  WHY_HOW_FIELD_ID: '',
   TABLE_ID: '',
   VIEW_ID: '',
+  WHY_THIS_FIELD_ID: '',
 };
 
 /**

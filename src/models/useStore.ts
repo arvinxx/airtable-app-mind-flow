@@ -22,7 +22,7 @@ const getStore = (rawSettings: GlobalSettingsState, base): SettingsState => {
   const table = base.getTableByIdIfExists(rawSettings.TABLE_ID);
   const view = table?.getViewByIdIfExists(rawSettings.VIEW_ID);
   const howField = table?.getFieldByIdIfExists(rawSettings.HOW_FIELD_ID);
-  const infoField = table?.getFieldByIdIfExists(rawSettings.INFO_FIELD_ID);
+  const infoField = table?.getFieldByIdIfExists(rawSettings.WHY_HOW_FIELD_ID);
   const queryResult =
     view && howField && infoField
       ? view.selectRecords({ fields: [table.primaryField, howField] })

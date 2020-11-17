@@ -8,7 +8,7 @@ import {
   useHover,
 } from './hooks';
 import { globalStyle } from '../globalStyle';
-import { useStore } from '../../models';
+import { useStore, useFormatMessage } from '../../models';
 
 loadCSSFromString(globalStyle);
 
@@ -20,6 +20,7 @@ interface MindFlowProps {
 const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
   const ref = useRef<HTMLDivElement>();
   const { isValid } = useStore();
+  const f = useFormatMessage();
 
   const treeGraph = useTreeGraph({
     container: ref.current,
@@ -41,7 +42,7 @@ const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
           justifyContent={'center'}
           height={'100vh'}
         >
-          请在右侧完成表格配置
+          {f('empty.state')}
         </Box>
       )}
     </Box>

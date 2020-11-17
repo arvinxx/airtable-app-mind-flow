@@ -6,6 +6,7 @@
         "lodash": "^4.17.20",
         "react": "^16.9.0",
         "react-dom": "^16.9.0",
+        "react-intl": "^5.10.1",
         "save-svg-as-png": "^1.4.17",
         "workerize": "^0.1.8"
     },
