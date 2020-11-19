@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { TreeGraph } from '@antv/g6';
 import { Item } from '@antv/g6/lib/types';
-import { useLocalStore } from '../../../models';
+import { useLocalStore } from '../../models';
 
 /**
  * 下钻方法
@@ -24,7 +24,7 @@ export const useDrillDown = (treeGraph: TreeGraph | undefined) => {
       const id = item.getModel()?.id;
       const name = item.getModel().name;
 
-      const newDepth = item.getModel().depth;
+      const depth = item.getModel().depth;
       // 必须存在才行
       if (!id) return;
 
@@ -34,7 +34,10 @@ export const useDrillDown = (treeGraph: TreeGraph | undefined) => {
       // 定义爹 id
       let parentId = item.getModel()?.parent as string;
 
-      for (let i = 0; i < newDepth; i++) {
+      // 如果没爹 说明是老大 不进行下钻
+      if (!parentId) return;
+
+      for (let i = 0; i < depth; i++) {
         if (parentId) {
           const parentNode = treeGraph.findById(parentId).getModel();
 
@@ -50,6 +53,7 @@ export const useDrillDown = (treeGraph: TreeGraph | undefined) => {
       // 顺序翻转 把根节点放最前面
       const drillDownList = nodeChain.reverse();
 
+      // 激活下钻功能
       activeDrillDown(id, drillDownList);
     };
 

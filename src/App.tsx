@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useRef } from 'react';
-import { useSize } from 'ahooks';
 import { Box } from '@airtable/blocks/ui';
-import { Settings, MindFlow, IntlProvider } from './components';
+import { Settings, IntlProvider } from './components';
 import { useSettingsStore, useShowSettings, useI18n } from './models';
 import { loadCSS } from './globalStyle';
+import MindFlow from './app';
 
 loadCSS();
 
@@ -14,7 +14,6 @@ const App: FC = () => {
 
   const graph = useRef(null);
   const canvas = useRef(null);
-  const size = useSize(canvas);
 
   useEffect(() => {
     if (!isValid && !isShowSettings) {
@@ -25,7 +24,7 @@ const App: FC = () => {
   return (
     <IntlProvider
       locale={locale}
-      defaultLocale={'en'}
+      defaultLocale={'en-US'}
       // @ts-ignore
       messages={messages ? messages : {}}
     >
@@ -45,7 +44,7 @@ const App: FC = () => {
             width: isShowSettings ? 'calc(100% - 300px)' : '100%',
           }}
         >
-          <MindFlow width={size.width} height={size.height} />
+          <MindFlow />
         </Box>
         {isShowSettings && (
           <Settings graph={graph} settings={settings} isValid={isValid} />

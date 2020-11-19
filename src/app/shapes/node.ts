@@ -2,7 +2,7 @@ import G6 from '@antv/g6';
 
 import { NodeConfig } from '@antv/g6/es/types';
 import { ShapeRegisterDefinition } from '../types';
-import { getHexFromColor, nameEllipsis } from '../../../utils';
+import { getHexFromColor, nameEllipsis } from '../../utils';
 import { handleCollapsedIcon, handleHover } from '../hooks';
 
 export interface FlowNode extends NodeConfig {

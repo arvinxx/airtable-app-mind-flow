@@ -8,14 +8,10 @@ import {
   useHover,
   useDrillDown,
 } from './hooks';
-import { globalStyle } from '../globalStyle';
-import {
-  useSettingsStore,
-  useFormatMessage,
-  useLocalStore,
-} from '../../models';
+import { useSettingsStore, useFormatMessage, useLocalStore } from '../models';
+import { style } from './style';
 
-loadCSSFromString(globalStyle);
+loadCSSFromString(style);
 
 interface MindFlowProps {
   width: number;

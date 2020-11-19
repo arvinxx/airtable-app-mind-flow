@@ -1,4 +1,4 @@
-export const globalStyle = `
+export const style = `
 .minimap{
   border: 1px solid rgba(0,0,0,0.09);
   border-radius: 2px;
