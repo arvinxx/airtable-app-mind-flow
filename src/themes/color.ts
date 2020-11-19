@@ -7,6 +7,7 @@ const basePurple = '#b37feb';
 const baseGray = '#8f8f8f';
 
 export const mindFlowColors = {
+  white: '#ffffff',
   blue: baseBlue,
   cyan: baseCyan,
   green: baseGreen,

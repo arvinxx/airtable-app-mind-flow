@@ -1,7 +1,8 @@
 import { mindFlowColors } from '../themes/color';
 
 export const getHexFromColor = (color: string) => {
-  console.log(color);
+  if (!color) return mindFlowColors.white;
+
   if (color.includes('blue')) return mindFlowColors.blue;
   if (color.includes('cyan')) return mindFlowColors.blue;
 

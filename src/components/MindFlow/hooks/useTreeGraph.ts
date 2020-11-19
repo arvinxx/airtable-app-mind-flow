@@ -7,6 +7,7 @@ import { transformData } from '../../../utils';
 import { useStore } from '../../../models';
 
 let firstRender = true;
+let defaultZoomRatio: number;
 export const useTreeGraph = (config: Partial<GraphOptions>) => {
   const { settings, isValid } = useStore();
   const [treeGraph, setTreeGraph] = useState<TreeGraph>(null);
@@ -42,6 +43,11 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
 
     // 当窗口变化时,始终将当前视窗的位置置中
     treeGraph.translate((width - prevWidth) / 2, (height - prevHeight) / 2);
+    // 如果是第一次刷新出页面时(即缩放倍数是默认值)
+    // 这个时候进行尺寸变化时,将图形尺寸自适应视图
+    if (treeGraph.getZoom() === defaultZoomRatio) {
+      treeGraph.fitView();
+    }
   }, [width, height]);
 
   // 当 treeGraph 更新时,重新渲染图
@@ -71,6 +77,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
         treeGraph.translate(lastPoint.x - newPoint.x, lastPoint.y - newPoint.y);
       } else {
         firstRender = false;
+        defaultZoomRatio = treeGraph.getZoom();
       }
     });
   }, [treeGraph, settings]);
