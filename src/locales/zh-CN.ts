@@ -18,7 +18,7 @@ export default {
     '这个字段记录了为什么需要思考这个问题的原因(前置条件、相关场景等)',
   'settings.node-color': '节点颜色',
   'settings.node-color.description':
-    '目前只支持 greenLight2 yellowLight2 orangeLight2 三种 ,详情参考:',
+    '节点颜色将使用视图中记录的颜色,详情参考:',
   'settings.node-color.ref': '记录的颜色配置',
   'settings.button.confirm': '确定',
 };

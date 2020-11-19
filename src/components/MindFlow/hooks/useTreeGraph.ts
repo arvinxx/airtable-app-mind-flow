@@ -35,8 +35,8 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
   // 当长宽高变化时,更新尺寸
   useEffect(() => {
     if (!treeGraph) return;
-    const prevWidth = treeGraph.getWidth();
-    const prevHeight = treeGraph.getHeight();
+    const prevWidth = treeGraph?.getWidth();
+    const prevHeight = treeGraph?.getHeight();
 
     treeGraph.changeSize(width, height);
 
@@ -59,13 +59,13 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
 
     // 更新数据
     transformData(settings).then((data) => {
+      if (!data) return;
       treeGraph.data(data);
       treeGraph.render();
 
-      if (!firstRender) {
+      if (!firstRender && lastPoint) {
         // 进行缩放
         treeGraph.zoomTo(zoomRatio);
-
         //获取重新渲染之后点（0， 0）在画布的位置
         const newPoint = treeGraph.getCanvasByPoint(0, 0);
         treeGraph.translate(lastPoint.x - newPoint.x, lastPoint.y - newPoint.y);

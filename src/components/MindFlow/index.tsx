@@ -1,4 +1,4 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { Box, loadCSSFromString } from '@airtable/blocks/ui';
 
 import {
@@ -18,12 +18,17 @@ interface MindFlowProps {
 }
 
 const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
-  const ref = useRef<HTMLDivElement>();
-  const { isValid } = useStore();
   const f = useFormatMessage();
+  const ref = useRef<HTMLDivElement>();
+  const [container, setContainer] = useState<HTMLDivElement>();
+  const { isValid } = useStore();
+
+  useEffect(() => {
+    setContainer(ref.current);
+  }, [isValid]);
 
   const treeGraph = useTreeGraph({
-    container: ref.current,
+    container,
     width,
     height: height,
   });
@@ -32,19 +37,17 @@ const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
   useCollapsedNode(treeGraph);
   useHover(treeGraph);
 
-  return (
-    <Box ref={ref} position={'relative'}>
-      {isValid ? null : (
-        <Box
-          flex={1}
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'center'}
-          height={'100vh'}
-        >
-          {f('empty.state')}
-        </Box>
-      )}
+  return isValid ? (
+    <Box ref={ref} position={'relative'} />
+  ) : (
+    <Box
+      flex={1}
+      display={'flex'}
+      alignItems={'center'}
+      justifyContent={'center'}
+      height={'100vh'}
+    >
+      {f('empty.state')}
     </Box>
   );
 };

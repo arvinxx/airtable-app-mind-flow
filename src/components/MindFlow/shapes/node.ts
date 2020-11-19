@@ -2,14 +2,8 @@ import G6 from '@antv/g6';
 
 import { NodeConfig } from '@antv/g6/es/types';
 import { ShapeRegisterDefinition } from '../types';
-import { nameEllipsis } from '../../../utils';
+import { getHexFromColor, nameEllipsis } from '../../../utils';
 import { handleCollapsedIcon, handleHover } from '../hooks';
-
-export const colorMap = {
-  greenLight2: '#52c41a',
-  yellowLight2: '#faad14',
-  orangeLight2: '#ff4d4f',
-};
 
 export interface FlowNode extends NodeConfig {
   name: string;
@@ -42,7 +36,7 @@ const node: ShapeRegisterDefinition = {
     draw(cfg: FlowNode, group) {
       const { name = '', color, children, information, id } = cfg;
 
-      const hexColor = colorMap[color];
+      const hexColor = getHexFromColor(color);
 
       const baseWidth = 200;
 

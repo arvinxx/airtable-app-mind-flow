@@ -23,6 +23,7 @@ export const transformData = async (settings: SettingsState) => {
     const childrenInPromise = howRecords.records.map(mapRecordToData);
     const children = await Promise.all(childrenInPromise);
 
+    console.log(record.getColorInView(view));
     return {
       id: record.id,
       name: record.name,

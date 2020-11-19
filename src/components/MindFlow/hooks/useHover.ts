@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { TreeGraph } from '@antv/g6';
 import { Item } from '@antv/g6/lib/types';
 import { IElement } from '@antv/g-base/lib';
-import { mindFlowColors } from '../../../themes/color';
+import { getHexFromColor } from '../../../utils';
 
 /**
  * 点击对象打开操作面板的 hooks
@@ -59,8 +59,8 @@ export const handleHover = (event: string, value, item?: Item) => {
       const { color } = item.getModel();
       marker?.animate(
         {
-          fill: isMarker ? mindFlowColors[color] : '#fff',
-          stroke: isMarker ? '#fff' : mindFlowColors[color],
+          fill: isMarker ? getHexFromColor(color) : '#fff',
+          stroke: isMarker ? '#fff' : getHexFromColor(color),
           r: isMarker ? 10 : 8,
         },
         { duration: 100 }

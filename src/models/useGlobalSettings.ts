@@ -15,7 +15,7 @@ export type GlobalSettingsState = Record<
 >;
 
 const defaultState: GlobalSettingsState = {
-  LANGUAGE: 'en',
+  LANGUAGE: navigator.language,
   HOW_FIELD_ID: '',
   WHY_HOW_FIELD_ID: '',
   TABLE_ID: '',

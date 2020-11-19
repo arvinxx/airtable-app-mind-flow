@@ -20,7 +20,7 @@ export default {
     'This field records the reason why you need to think about this problem (preconditions, related scenarios, etc.)',
   'settings.node-color': 'Node Color',
   'settings.node-color.description':
-    'By now, Mindflow only support greenLight2 yellowLight2 orangeLight2 this 3 colors, more configuration please refer to',
+    'MindFlow will use your record color in the view, more information please refer to',
   'settings.node-color.ref': 'Record coloring overview',
   'settings.button.confirm': 'Confirm',
 };

@@ -5,14 +5,16 @@ import { useIntl } from 'react-intl';
 import { useSynced } from '@airtable/blocks/ui';
 import { GlobalSettingsKeys } from './useGlobalSettings';
 
-export type SupportedLocales = 'en' | 'zh';
+export type SupportedLocales = 'en-US' | 'en' | 'zh' | 'zh-CN';
 
 function importMessages(locale: SupportedLocales): Promise<LocaleMessages> {
   switch (locale) {
     case 'en':
+    case 'en-US':
     default:
       return import('../locales/en-US').then((m) => m.default);
     case 'zh':
+    case 'zh-CN':
       return import('../locales/zh-CN').then((m) => m.default);
   }
 }
@@ -24,7 +26,7 @@ export const useI18n = () => {
   const [syncData, setLocale, canSetValue] = useSynced(
     GlobalSettingsKeys.LANGUAGE
   );
-  const locale = syncData as SupportedLocales;
+  const locale = (syncData || navigator.language) as SupportedLocales;
 
   const [messages, setMessages] = React.useState<LocaleMessages | null>(null);
 

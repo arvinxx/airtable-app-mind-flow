@@ -61,8 +61,8 @@ const Settings: FC<SettingsProps> = ({ settings }) => {
               }
             }}
             options={[
-              { label: 'English', value: 'en' },
-              { label: '中文', value: 'zh' },
+              { label: 'English', value: 'en-US' },
+              { label: '简体中文', value: 'zh-CN' },
             ]}
           />
         </FormField>
@@ -124,8 +124,7 @@ const Settings: FC<SettingsProps> = ({ settings }) => {
                   href="https://support.airtable.com/hc/en-us/articles/115013883908-Record-coloring-overview"
                   target="_blank"
                 >
-                {f('settings.node-color.ref')}
-
+                  {f('settings.node-color.ref')}
                 </Link>
               </Text>
             </Box>
