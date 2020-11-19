@@ -86,7 +86,7 @@ const validationQueryResult = (settings: SettingsState) => {
  * A React hook to validate and access settings configured in SettingsForm.
  * @returns {{settings: object, isValid: boolean, message: string} | {settings: object, isValid: boolean}}
  */
-export const useStore = () => {
+export const useSettingsStore = () => {
   const base = useBase();
   const rawSettings = useGlobalSettings();
 

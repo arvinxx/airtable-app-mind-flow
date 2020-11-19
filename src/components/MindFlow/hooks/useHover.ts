@@ -5,7 +5,7 @@ import { IElement } from '@antv/g-base/lib';
 import { getHexFromColor } from '../../../utils';
 
 /**
- * 点击对象打开操作面板的 hooks
+ * hover 节点显示交互效果
  * @param treeGraph 需要传入的 TreeGraph 对象
  */
 export const useHover = (treeGraph: TreeGraph | undefined) => {
@@ -28,7 +28,7 @@ export const useHover = (treeGraph: TreeGraph | undefined) => {
     };
 
     treeGraph.on('node:mouseover', hover);
-    // treeGraph.on('node:mouseover', hover);
+
     treeGraph.on('node:mouseleave', leave);
     return () => {
       treeGraph.off('node:mouseover');
@@ -37,6 +37,12 @@ export const useHover = (treeGraph: TreeGraph | undefined) => {
   }, [treeGraph]);
 };
 
+/**
+ * shape 处相应节点的方法
+ * @param event
+ * @param value
+ * @param item
+ */
 export const handleHover = (event: string, value, item?: Item) => {
   if (event === 'hovered') {
     const isBackground = value === 'background';

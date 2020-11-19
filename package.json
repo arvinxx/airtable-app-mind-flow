@@ -8,7 +8,8 @@
         "react-dom": "^16.9.0",
         "react-intl": "^5.10.1",
         "save-svg-as-png": "^1.4.17",
-        "showdown": "^1.9.1"
+        "showdown": "^1.9.1",
+        "stook": "^0.4.0"
     },
     "devDependencies": {
         "@types/showdown": "^1.9.3",
@@ -18,7 +19,9 @@
         "eslint-plugin-react": "^7.14.3",
         "eslint-plugin-react-hooks": "^2.0.1",
         "prettier": "^2.1.0",
-        "typescript": "^3.9.3"
+        "stook-devtools": "^0.4.0",
+        "typescript": "^3.9.3",
+        "utility-types": "^3.10.0"
     },
     "scripts": {
         "start": "block run",

@@ -2,14 +2,14 @@ import React, { FC, useEffect, useRef } from 'react';
 import { useSize } from 'ahooks';
 import { Box } from '@airtable/blocks/ui';
 import { Settings, MindFlow, IntlProvider } from './components';
-import { useStore, useShowSettings, useI18n } from './models';
+import { useSettingsStore, useShowSettings, useI18n } from './models';
 import { loadCSS } from './globalStyle';
 
 loadCSS();
 
 const App: FC = () => {
   const { isShowSettings, setShowSettings } = useShowSettings();
-  const { settings, isValid } = useStore();
+  const { settings, isValid } = useSettingsStore();
   const { locale, messages } = useI18n();
 
   const graph = useRef(null);

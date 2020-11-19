@@ -4,12 +4,13 @@ import { GraphOptions } from '@antv/g6/lib/types';
 import { defaultConfig } from '../config';
 import { registerShapes } from '../shapes';
 import { transformData } from '../../../utils';
-import { useStore } from '../../../models';
+import { useLocalStore, useSettingsStore } from '../../../models';
 
 let firstRender = true;
 let defaultZoomRatio: number;
 export const useTreeGraph = (config: Partial<GraphOptions>) => {
-  const { settings, isValid } = useStore();
+  const { settings, isValid } = useSettingsStore();
+  const { isDrillDown, drillDownId } = useLocalStore();
   const [treeGraph, setTreeGraph] = useState<TreeGraph>(null);
 
   const { container, width, height } = config;
@@ -64,7 +65,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
     }
 
     // 更新数据
-    transformData(settings).then((data) => {
+    transformData(settings, isDrillDown ? drillDownId : null).then((data) => {
       if (!data) return;
       treeGraph.data(data);
       treeGraph.render();

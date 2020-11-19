@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { TreeGraph } from '@antv/g6';
 import { expandRecord, useRecords } from '@airtable/blocks/ui';
-import { useStore } from '../../../models';
+import { useSettingsStore } from '../../../models';
 
 /**
  * 点击对象打开操作面板的 hooks
  * @param treeGraph 需要传入的 TreeGraph 对象
  */
 export const useOpenExpandPanel = (treeGraph: TreeGraph | undefined) => {
-  const { settings } = useStore();
+  const { settings } = useSettingsStore();
   const records = useRecords(settings && settings.table);
 
   useEffect(() => {
