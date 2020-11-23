@@ -79,12 +79,12 @@ const node: ShapeRegisterDefinition = {
           x: 12,
           y: 8,
           text: nameEllipsis(name, baseWidth - 40),
-
           fontSize: 14,
           fill: 'rgba(0,0,0,0.65)',
           cursor: 'pointer',
           isTitleShape: true,
         },
+        name: 'title',
         id,
       });
 

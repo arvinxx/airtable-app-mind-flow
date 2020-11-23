@@ -1,6 +1,9 @@
-export const style = `
+import { mindFlowColors } from '../themes/color';
+import { colors, colorUtils } from '@airtable/blocks/ui';
+
+export const tooltip = `
 .minimap{
-  border: 1px solid rgba(0,0,0,0.09);
+  border: 1px solid ${mindFlowColors.black009};
   border-radius: 2px;
   position: absolute;
   left: 0;
@@ -16,7 +19,7 @@ export const style = `
   background-color: rgba(255, 255, 255, 0.9);
   padding: 12px 16px;
   width: 330px;
-  box-shadow: rgba(0,0,0,0.09) 0px 4px 8px;
+  box-shadow: ${mindFlowColors.black009} 0px 4px 8px;
 }
 .g6-tooltip-title {
   font-size: 14px;
@@ -29,7 +32,7 @@ export const style = `
   font-size: 12px;
   overflow-y: scroll;
   max-height: 200px;
-  border-top: solid 1px rgba(0,0,0,0.09);
+  border-top: solid 1px ${mindFlowColors.black009};
 }
 .g6-tooltip-description pre{
   background: #f1f1f1;
@@ -43,7 +46,7 @@ export const style = `
   font-size: 12px;
   font-weight: bold;
   padding-top:8px;
-  border-top: solid 1px rgba(0,0,0,0.09);
+  border-top: solid 1px ${mindFlowColors.black009};
 }
 .g6-tooltip-info-item {
   color:rgba(0,0,0,0.45);
@@ -51,4 +54,42 @@ export const style = `
   margin-left: 4px;
   margin-bottom: 4px;
 }
+`;
+
+export const contextMenu = `
+  .g6-component-contextmenu {
+    width:120px;
+    position: absolute;
+    list-style-type: none;
+    padding: 4px 0;
+    left: -150px;
+    background-color: ${mindFlowColors.white};
+    border-radius: 2px;
+    font-size: 14px;
+    color: #545454;
+    box-shadow: ${mindFlowColors.black009} 0px 4px 8px;
+  }
+  .g6-component-contextmenu .divider {
+    width:100%;
+    height:1px;
+    display:block;
+    margin:2px 0;
+    background-color: ${mindFlowColors.black009};
+  }
+  .g6-component-contextmenu ul{
+    padding: 0;
+    margin: 0;
+  }
+  .g6-component-contextmenu li {
+    cursor: pointer;
+    padding: 8px 16px;
+    list-style-type:none;
+    list-style: none;
+    margin-left: 0px;
+  }
+  
+  .g6-component-contextmenu li:hover {
+    color: ${colorUtils.getHexForColor(colors.BLUE_BRIGHT)};
+    background-color: ${mindFlowColors.menuHoverBg};
+  }
 `;

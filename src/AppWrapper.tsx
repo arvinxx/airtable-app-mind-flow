@@ -4,16 +4,19 @@ import { Settings, IntlProvider } from './components';
 import { useSettingsStore, useShowSettings, useI18n } from './models';
 import { loadCSS } from './globalStyle';
 import MindFlow from './app';
+import { useSize } from 'ahooks';
 
 loadCSS();
 
-const App: FC = () => {
+const AppWrapper: FC = () => {
   const { isShowSettings, setShowSettings } = useShowSettings();
   const { settings, isValid } = useSettingsStore();
   const { locale, messages } = useI18n();
 
   const graph = useRef(null);
   const canvas = useRef(null);
+
+  const size = useSize(canvas);
 
   useEffect(() => {
     if (!isValid && !isShowSettings) {
@@ -44,7 +47,7 @@ const App: FC = () => {
             width: isShowSettings ? 'calc(100% - 300px)' : '100%',
           }}
         >
-          <MindFlow />
+          <MindFlow width={size.width} height={size.height} />
         </Box>
         {isShowSettings && (
           <Settings graph={graph} settings={settings} isValid={isValid} />
@@ -54,4 +57,4 @@ const App: FC = () => {
   );
 };
 
-export default App;
+export default AppWrapper;

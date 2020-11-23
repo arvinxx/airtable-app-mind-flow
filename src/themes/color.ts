@@ -6,6 +6,9 @@ const baseCyan = '#5cdbd3';
 const basePurple = '#b37feb';
 const baseGray = '#8f8f8f';
 
+const black009 = 'rgba(0,0,0,0.09)';
+const black002 = 'rgba(0,0,0,0.02)';
+
 export const mindFlowColors = {
   white: '#ffffff',
   blue: baseBlue,
@@ -15,4 +18,7 @@ export const mindFlowColors = {
   red: baseRed,
   purple: basePurple,
   gray: baseGray,
+  black009,
+  shadowColor: black009,
+  menuHoverBg: black002,
 };

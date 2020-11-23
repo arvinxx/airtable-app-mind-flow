@@ -8,10 +8,15 @@ import {
   useHover,
   useDrillDown,
 } from './hooks';
-import { useSettingsStore, useFormatMessage, useLocalStore } from '../models';
-import { style } from './style';
+import {
+  useSettingsStore,
+  useFormatMessage,
+  useLocalDrillDown,
+} from '../models';
+import { tooltip, contextMenu } from './style';
 
-loadCSSFromString(style);
+loadCSSFromString(tooltip);
+loadCSSFromString(contextMenu);
 
 interface MindFlowProps {
   width: number;
@@ -44,7 +49,7 @@ const MindFlow: FC<MindFlowProps> = ({ height, width }) => {
     deActiveDrillDown,
     isDrillDown,
     recordChain,
-  } = useLocalStore();
+  } = useLocalDrillDown();
 
   return (
     <Box>

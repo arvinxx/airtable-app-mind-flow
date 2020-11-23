@@ -4,15 +4,19 @@ import { GraphOptions } from '@antv/g6/lib/types';
 import { defaultConfig } from '../config';
 import { registerShapes } from '../shapes';
 import { transformData } from '../../utils';
-import { useLocalStore, useSettingsStore } from '../../models';
+import {
+  useLocalDrillDown,
+  useLocalViewPort,
+  useSettingsStore,
+} from '../../models';
 
 let firstRender = true;
 let defaultZoomRatio: number;
 export const useTreeGraph = (config: Partial<GraphOptions>) => {
   const { settings, isValid } = useSettingsStore();
-  const { isDrillDown, drillDownId } = useLocalStore();
+  const { isDrillDown, drillDownId } = useLocalDrillDown();
   const [treeGraph, setTreeGraph] = useState<TreeGraph>(null);
-
+  const { setZoomRatio } = useLocalViewPort();
   const { container, width, height } = config;
 
   // 当配置变更时,自动更新 treeGraph
@@ -60,6 +64,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
     if (!firstRender) {
       // 获取缩放倍数
       zoomRatio = treeGraph.getZoom();
+      setZoomRatio(zoomRatio);
       //在拉取新数据重新渲染页面之前先获取点（0， 0）在画布上的位置
       lastPoint = treeGraph.getCanvasByPoint(0, 0);
     }
@@ -79,6 +84,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
       } else {
         firstRender = false;
         defaultZoomRatio = treeGraph.getZoom();
+        setZoomRatio(defaultZoomRatio);
       }
     });
   }, [treeGraph, settings]);
