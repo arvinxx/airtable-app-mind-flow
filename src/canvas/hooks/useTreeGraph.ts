@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import G6, { TreeGraph } from '@antv/g6';
-import { GraphOptions } from '@antv/g6/lib/types';
+import { TreeGraph } from '@antv/g6';
+import { Graph } from '@antv/x6';
+import { Options } from '@antv/x6/lib/graph/options';
+
 import { defaultConfig } from '../config';
 import { registerShapes } from '../shapes';
 import { transformData } from '../../utils';
@@ -8,10 +10,10 @@ import { useLocalStore, useSettingsStore } from '../../models';
 
 let firstRender = true;
 let defaultZoomRatio: number;
-export const useTreeGraph = (config: Partial<GraphOptions>) => {
+export const useTreeGraph = (config: Partial<Options.Manual>) => {
   const { settings, isValid } = useSettingsStore();
   const { isDrillDown, drillDownId } = useLocalStore();
-  const [treeGraph, setTreeGraph] = useState<TreeGraph>(null);
+  const [treeGraph, setTreeGraph] = useState<Graph>(null);
 
   const { container, width, height } = config;
 
@@ -26,7 +28,7 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
     }
 
     setTreeGraph(
-      new G6.TreeGraph({
+      new Graph({
         container,
         ...defaultConfig,
         ...config,
@@ -40,13 +42,13 @@ export const useTreeGraph = (config: Partial<GraphOptions>) => {
     const prevWidth = treeGraph?.getWidth();
     const prevHeight = treeGraph?.getHeight();
 
-    treeGraph.changeSize(width, height);
+    treeGraph.resize(width, height);
 
     // 当窗口变化时,始终将当前视窗的位置置中
     treeGraph.translate((width - prevWidth) / 2, (height - prevHeight) / 2);
     // 如果是第一次刷新出页面时(即缩放倍数是默认值)
     // 这个时候进行尺寸变化时,将图形尺寸自适应视图
-    if (treeGraph.getZoom() === defaultZoomRatio) {
+    if (treeGraph.zoom() === defaultZoomRatio) {
       treeGraph.fitView();
     }
   }, [width, height]);

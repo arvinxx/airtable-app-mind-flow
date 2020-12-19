@@ -1,5 +1,6 @@
 import G6 from '@antv/g6';
-import { GraphOptions } from '@antv/g6/lib/types';
+import { Graph, ToolsView } from '@antv/x6';
+import { Options } from '@antv/x6/lib/graph/options';
 import { getHeightByInfoLength, FlowNode } from './shapes/node';
 import tooltip from './shapes/tooltip';
 
@@ -10,7 +11,7 @@ const minimap = new G6.Minimap({
 });
 const toolbar = new G6.ToolBar();
 
-export const defaultConfig: Omit<GraphOptions, 'container'> = {
+export const defaultConfig: Omit<Options.Manual, 'container'> = {
   width: 1600,
   height: 800,
   modes: {

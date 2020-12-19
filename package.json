@@ -13,6 +13,7 @@
         "stook": "^0.4.0"
     },
     "devDependencies": {
+        "@types/jquery": "^3.5.5",
         "@types/showdown": "^1.9.3",
         "@typescript-eslint/eslint-plugin": "^3.0.2",
         "@typescript-eslint/parser": "^2.15.0",
