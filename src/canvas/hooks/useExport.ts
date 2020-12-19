@@ -1,4 +1,4 @@
-import { exportToPng, exportToSvg, ExportType } from '../../../utils';
+import { exportToPng, exportToSvg, ExportType } from '../../utils';
 
 // const onExportGraph = (exportType: ExportType) => {
 //   const { view } = settings;

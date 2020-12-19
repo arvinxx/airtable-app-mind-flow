@@ -20,7 +20,7 @@ export default {
     'This field records the reason why you need to think about this problem (preconditions, related scenarios, etc.)',
   'settings.node-color': 'Node Color',
   'settings.node-color.description':
-    'MindFlow will use your record color in the view, more information please refer to',
+    'canvas will use your record color in the view, more information please refer to',
   'settings.node-color.ref': 'Record coloring overview',
   'settings.button.confirm': 'Confirm',
 };

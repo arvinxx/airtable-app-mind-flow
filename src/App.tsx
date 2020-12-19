@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useRef } from 'react';
 import { useSize } from 'ahooks';
 import { Box } from '@airtable/blocks/ui';
-import { Settings, MindFlow, IntlProvider } from './components';
+import { Settings, IntlProvider } from './components';
+import MindFlow from './canvas';
 import { useSettingsStore, useShowSettings, useI18n } from './models';
 import { loadCSS } from './globalStyle';
 
