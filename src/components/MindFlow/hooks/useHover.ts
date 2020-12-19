@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { TreeGraph } from '@antv/g6';
 import { Item } from '@antv/g6/lib/types';
 import { IElement } from '@antv/g-base/lib';
-import { getHexFromColor } from '../../utils';
+import { getHexFromColor } from '../../../utils';
 
 /**
  * hover 节点显示交互效果

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { TreeGraph } from '@antv/g6';
 import { expandRecord, useRecords } from '@airtable/blocks/ui';
-import { useSettingsStore } from '../../models';
+import { useSettingsStore } from '../../../models';
 
 /**
  * 点击对象打开操作面板的 hooks

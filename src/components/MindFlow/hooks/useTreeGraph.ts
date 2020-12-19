@@ -3,8 +3,8 @@ import G6, { TreeGraph } from '@antv/g6';
 import { GraphOptions } from '@antv/g6/lib/types';
 import { defaultConfig } from '../config';
 import { registerShapes } from '../shapes';
-import { transformData } from '../../utils';
-import { useLocalStore, useSettingsStore } from '../../models';
+import { transformData } from '../../../utils';
+import { useLocalStore, useSettingsStore } from '../../../models';
 
 let firstRender = true;
 let defaultZoomRatio: number;

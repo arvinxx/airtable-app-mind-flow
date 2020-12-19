@@ -8,12 +8,12 @@ import {
   useHover,
   useDrillDown,
 } from './hooks';
-import { globalStyle } from './globalStyle';
+import { globalStyle } from '../globalStyle';
 import {
   useSettingsStore,
   useFormatMessage,
   useLocalStore,
-} from '../models';
+} from '../../models';
 
 loadCSSFromString(globalStyle);
 

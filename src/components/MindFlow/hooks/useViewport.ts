@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import G6, { TreeGraph } from '@antv/g6';
 
-import { useSettingsStore } from '../../models';
+import { useSettingsStore } from '../../../models';
 
 export const useViewPort = (treeGraph: TreeGraph) => {
   const { settings, isValid } = useSettingsStore();

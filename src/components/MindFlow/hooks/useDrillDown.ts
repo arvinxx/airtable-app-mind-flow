@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { TreeGraph } from '@antv/g6';
 import { Item } from '@antv/g6/lib/types';
-import { useLocalStore } from '../../models';
+import { useLocalStore } from '../../../models';
 
 /**
  * 下钻方法
