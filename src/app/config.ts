@@ -2,6 +2,7 @@ import G6 from '@antv/g6';
 import { GraphOptions } from '@antv/g6/lib/types';
 import { getHeightByInfoLength, FlowNode } from './shapes/node';
 import tooltip from './shapes/tooltip';
+import contextMenu from './shapes/contextMenu';
 
 const minimap = new G6.Minimap({
   size: [140, 100],
@@ -24,12 +25,12 @@ export const defaultConfig: Omit<GraphOptions, 'container'> = {
         formatText: tooltip,
         shouldBegin: ({ target }) => {
           const { cfg } = target;
-          return cfg?.name !== 'collapse-icon';
+          return cfg?.name === 'title';
         },
       },
     ],
   },
-  plugins: [minimap, toolbar],
+  plugins: [minimap, toolbar, contextMenu],
   fitView: true,
   fitViewPadding: 8,
   animate: false,

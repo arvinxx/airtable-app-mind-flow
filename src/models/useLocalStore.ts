@@ -7,7 +7,7 @@ declare module 'stook' {
   }
 }
 
-export const useLocalStore = () => {
+export const useLocalDrillDown = () => {
   const [isDrillDown, setIsDrillDown] = useStore('isDrillDown', false);
   const [drillDownId, setDrillDownId] = useStore('drillDownId', '');
   const [recordChain, setRecordChain] = useStore<
@@ -44,5 +44,14 @@ export const useLocalStore = () => {
      */
     recordChain,
     drillDownId,
+  };
+};
+
+export const useLocalViewPort = () => {
+  const [zoomRatio, setZoomRatio] = useStore('zoomRatio', 0);
+
+  return {
+    zoomRatio,
+    setZoomRatio,
   };
 };

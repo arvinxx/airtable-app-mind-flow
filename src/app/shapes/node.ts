@@ -2,7 +2,7 @@ import G6 from '@antv/g6';
 
 import { NodeConfig } from '@antv/g6/es/types';
 import { ShapeRegisterDefinition } from '../types';
-import { getHexFromColor, nameEllipsis } from '../../../utils';
+import { getHexFromColor, nameEllipsis } from '../../utils';
 import { handleCollapsedIcon, handleHover } from '../hooks';
 
 export interface FlowNode extends NodeConfig {
@@ -79,12 +79,12 @@ const node: ShapeRegisterDefinition = {
           x: 12,
           y: 8,
           text: nameEllipsis(name, baseWidth - 40),
-
           fontSize: 14,
           fill: 'rgba(0,0,0,0.65)',
           cursor: 'pointer',
           isTitleShape: true,
         },
+        name: 'title',
         id,
       });
 
